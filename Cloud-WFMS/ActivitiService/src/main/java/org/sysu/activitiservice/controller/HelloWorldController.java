@@ -1,6 +1,5 @@
 package org.sysu.activitiservice.controller;
 
-import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,10 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 测试controller
+ */
 @Controller
 @RestController
 @SuppressWarnings("unchecked")
@@ -32,7 +33,6 @@ public class HelloWorldController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-
     @RequestMapping(value = "/getHelloworld", method = RequestMethod.GET)
     public ResponseEntity<?> getHelloworld() {
         logger.info("logback test");
@@ -40,6 +40,5 @@ public class HelloWorldController {
         response.put("message", "hello world, my server port is " + serverPort);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-
 
 }

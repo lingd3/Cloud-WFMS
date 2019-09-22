@@ -24,6 +24,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.transaction.PlatformTransactionManager;
 
+/**
+ * 引擎配置类
+ * 用于设置cache大小
+ */
 public class SpringProcessEngineConfiguration extends ProcessEngineConfigurationImpl implements ApplicationContextAware {
     protected PlatformTransactionManager transactionManager;
     protected String deploymentName = "SpringAutoDeployment";
@@ -34,7 +38,7 @@ public class SpringProcessEngineConfiguration extends ProcessEngineConfiguration
     private Collection<AutoDeploymentStrategy> deploymentStrategies = new ArrayList();
 
     public SpringProcessEngineConfiguration() {
-        super.setProcessDefinitionCacheLimit(20);
+        super.setProcessDefinitionCacheLimit(50); // 设置cache大小为50，使用LRU替换
         this.transactionsExternallyManaged = true;
         this.deploymentStrategies.add(new DefaultAutoDeploymentStrategy());
         this.deploymentStrategies.add(new SingleResourceAutoDeploymentStrategy());
