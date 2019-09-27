@@ -250,7 +250,7 @@ public class ActivitiController {
         Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
         activitiService.completeTask(taskId, variables);
         response.put("status", "message");
-        response.put("message", "complete task of taskId " + taskId + "with taskName" + task.getName());
+        response.put("message", "complete task of taskId " + taskId + " with taskName" + task.getName());
         response.put("isEnded", activitiService.isEnded(processInstanceId) ? "1" : "0");
         logger.info(response.toString());
         return ResponseEntity.status(HttpStatus.OK).body(JSON.toJSONString(response));

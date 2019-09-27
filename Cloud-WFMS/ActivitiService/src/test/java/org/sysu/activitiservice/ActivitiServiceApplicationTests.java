@@ -44,16 +44,18 @@ public class ActivitiServiceApplicationTests {
 
     @Test
     public void initDeploy() {
-        Map<String, Object> variables = new HashMap<String, Object>();
-        runtimeService.startProcessInstanceByKey("a4-model", variables);
+        String r1 = "processes/online-shopping.bpmn20.xml";
+        for (int i = 0; i < 100; i++) {
+            repositoryService.createDeployment().addClasspathResource(r1).deploy();
+        }
     }
 
     @Test
-    public void testEngineConfig() {
-        ProcessInstance processInstance = runtimeService.startProcessInstanceById("online-shopping:1000:623060");
-        ProcessInstance processInstance1 = runtimeService.startProcessInstanceById("online-shopping:1001:623064");
-        ProcessInstance processInstance2 = runtimeService.startProcessInstanceById("online-shopping:1002:623068");
-        ProcessInstance processInstance3 = runtimeService.startProcessInstanceById("online-shopping:1000:623060");
+    public void getProcessDefinitionId() {
+        List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().processDefinitionKey("online-shopping").list();
+        for (ProcessDefinition p : list) {
+            System.out.println(p.getId());
+        }
     }
 
     @Test

@@ -1,29 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2fb70d84-7504-46e5-a6ff-37af6bdc9b98" name="Default Changelist" comment="activiti引擎服务初始化">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/impl/ActivitiServiceImpl.java" afterDir="false" />
+    <list default="true" id="2fb70d84-7504-46e5-a6ff-37af6bdc9b98" name="Default Changelist" comment="activiti引擎服务开发完成">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/engine/impl/persistence/deploy/DefaultDeploymentCache.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/spring/SpringProcessEngineConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/spring/SpringProcessEngineConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/ActivitiServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/ActivitiServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/controller/ActivitiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/controller/ActivitiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/controller/HelloWorldController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/controller/HelloWorldController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/ActivitiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/ActivitiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/util/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/util/CommonUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/10_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/11_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/2_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/3_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/4_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/5_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/6_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/6_model_test.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/7_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/8_model.bpmn20.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/9_model.bpmn20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/1_model.bpmn20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/online-shopping.bpmn20.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ActivitiServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ActivitiServiceApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ExperimentHelp.java" beforeDir="false" afterPath="$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ExperimentHelp.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/../CloudWorkflow/src/ActivitiService/target/" />
@@ -42,39 +25,41 @@
     <session id="-1379351182">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.24" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Dockerfile" value="1" />
-          <entry key="java" value="42" />
-          <entry key="properties" value="5" />
-          <entry key="xml" value="8" />
+          <entry key="java" value="49" />
+          <entry key="properties" value="6" />
+          <entry key="xml" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="42" />
+          <entry key="JAVA" value="49" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Properties" value="5" />
-          <entry key="XML" value="8" />
+          <entry key="Properties" value="6" />
+          <entry key="XML" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="4" />
-          <entry key="java" value="384" />
+          <entry key="java" value="572" />
           <entry key="properties" value="55" />
-          <entry key="txt" value="15" />
+          <entry key="txt" value="22" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="384" />
-          <entry key="PLAIN_TEXT" value="19" />
+          <entry key="JAVA" value="572" />
+          <entry key="PLAIN_TEXT" value="26" />
           <entry key="Properties" value="55" />
           <entry key="XML" value="1" />
         </counts>
@@ -82,12 +67,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ActivitiServiceApplicationTests.java">
+        <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/impl/ActivitiServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-115">
-              <caret line="60" column="70" lean-forward="true" selection-start-line="60" selection-start-column="70" selection-end-line="60" selection-end-column="70" />
+            <state relative-caret-position="46">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -95,32 +80,43 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/controller/ActivitiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="242" column="9" selection-start-line="242" selection-start-column="9" selection-end-line="242" selection-end-column="9" />
+            <state relative-caret-position="391">
+              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/spring/SpringProcessEngineConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ActivitiServiceApplicationTests.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="56" column="40" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="40" />
               <folding>
-                <element signature="e#716#746#0" expanded="true" />
+                <element signature="method#contextStart#0;class#ActivitiServiceApplicationTests#0" />
+                <element signature="method#testRecoverProcessDefinitionEntityTime#0;class#ActivitiServiceApplicationTests#0" />
+                <element signature="method#testTravelBooking#0;class#ActivitiServiceApplicationTests#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/impl/ActivitiServiceImpl.java">
+        <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/ActivitiServiceApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
+            <state relative-caret-position="342">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/util/CommonUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -141,8 +137,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/ActivitiService/pom.xml" />
-        <option value="$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ActivitiServiceApplicationTests.java" />
-        <option value="$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/spring/SpringProcessEngineConfiguration.java" />
         <option value="$PROJECT_DIR$/ActivitiService/src/main/resources/processes/leave.bpmn20.xml" />
         <option value="$PROJECT_DIR$/ActivitiService/src/main/resources/application-dev.properties" />
         <option value="$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ExperimentHelp.java" />
@@ -152,6 +146,8 @@
         <option value="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/ActivitiService.java" />
         <option value="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/impl/ActivitiServiceImpl.java" />
         <option value="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/util/CommonUtil.java" />
+        <option value="$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ActivitiServiceApplicationTests.java" />
+        <option value="$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/spring/SpringProcessEngineConfiguration.java" />
         <option value="$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/controller/ActivitiController.java" />
       </list>
     </option>
@@ -167,10 +163,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="553" />
-    <option name="y" value="178" />
-    <option name="width" value="1460" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="119" />
+    <option name="y" value="243" />
+    <option name="width" value="1591" />
     <option name="height" value="741" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -182,6 +178,8 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -269,6 +267,16 @@
               <item name="ActivitiService" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="org" type="462c0819:PsiDirectoryNode" />
+              <item name="activitiservice" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cloud-WFMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ActivitiService" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -304,12 +312,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569140301031" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569569935933" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/ActivitiService/pom.xml" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -338,6 +344,22 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActivitiServiceApplicationTests.getProcessDefinitionId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="activiti-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.sysu.activitiservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.sysu.activitiservice" />
+      <option name="MAIN_CLASS_NAME" value="org.sysu.activitiservice.ActivitiServiceApplicationTests" />
+      <option name="METHOD_NAME" value="getProcessDefinitionId" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -374,63 +396,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <module name="activiti-service" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <module name="activiti-service" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.ActivitiServiceApplication" />
       <item itemvalue="JUnit.ActivitiServiceApplicationTests.initDeploy" />
       <item itemvalue="JUnit.ActivitiServiceApplicationTests.test1" />
+      <item itemvalue="JUnit.ActivitiServiceApplicationTests.getProcessDefinitionId" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ActivitiServiceApplication" />
-        <item itemvalue="JUnit.ActivitiServiceApplicationTests.test1" />
+        <item itemvalue="JUnit.ActivitiServiceApplicationTests.getProcessDefinitionId" />
         <item itemvalue="JUnit.ActivitiServiceApplicationTests.initDeploy" />
+        <item itemvalue="JUnit.ActivitiServiceApplicationTests.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -445,6 +422,14 @@
       <option name="presentableId" value="Default" />
       <updated>1569135224920</updated>
     </task>
+    <task id="LOCAL-00001" summary="activiti引擎服务开发完成">
+      <created>1569140473322</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1569140473322</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -463,41 +448,51 @@
     <history-entry file="ActivitiServiceApplicationTests_test1 - 2019.09.22 at 15h 21m 19s.xml">
       <configuration name="ActivitiServiceApplicationTests.test1" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ActivitiServiceApplicationTests_initDeploy - 2019.09.24 at 11h 13m 38s.xml">
+      <configuration name="ActivitiServiceApplicationTests.initDeploy" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ActivitiServiceApplicationTests_getProcessDefinitionId - 2019.09.24 at 11h 19m 17s.xml">
+      <configuration name="ActivitiServiceApplicationTests.getProcessDefinitionId" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26119402" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26385927" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32899022" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3854506" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3995657" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.606949" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Maven Projects" weight="0.32995737" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" weight="0.32995737" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="activiti引擎服务开发完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="activiti引擎服务开发完成" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ActivitiService/pom.xml">
@@ -507,106 +502,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NameService/src/main/java/org/sysu/nameservice/loadbalancer/AbstractLoadBalancer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NameService/src/main/java/org/sysu/nameservice/loadbalancer/LoadBalancerClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NameService/src/main/java/org/sysu/nameservice/resourceProvider/ServerManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-138">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NameService/src/main/java/org/sysu/nameservice/NameServiceApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="31" selection-start-line="31" selection-end-line="33" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NameService/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-483" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/NameService/src/main/java/org/sysu/nameservice/loadbalancer/AbstractLoadBalancer.java" />
+    <entry file="file://$PROJECT_DIR$/NameService/src/main/java/org/sysu/nameservice/loadbalancer/LoadBalancerClient.java" />
+    <entry file="file://$PROJECT_DIR$/NameService/src/main/java/org/sysu/nameservice/resourceProvider/ServerManager.java" />
+    <entry file="file://$PROJECT_DIR$/NameService/src/main/java/org/sysu/nameservice/NameServiceApplication.java" />
+    <entry file="file://$PROJECT_DIR$/NameService/pom.xml" />
     <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/resources/processes/4_model.bpmn20.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/configuration/ActivitiConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/component/Counter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-164">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/runner/StartupRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/resources/processes/4_model.bpmn20.xml" />
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/configuration/ActivitiConfig.java" />
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/component/Counter.java" />
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/runner/StartupRunner.java" />
     <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/docker/Dockerfile">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/engine/impl/persistence/deploy/DefaultDeploymentCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/spring/SpringProcessEngineConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="42" column="57" lean-forward="true" selection-start-line="42" selection-start-column="57" selection-end-line="42" selection-end-column="57" />
-          <folding>
-            <element signature="e#4854#4855#0" expanded="true" />
-            <element signature="e#4900#4901#0" expanded="true" />
-            <element signature="e#5089#5090#0" expanded="true" />
-            <element signature="e#5131#5132#0" expanded="true" />
-            <element signature="e#5191#5192#0" expanded="true" />
-            <element signature="e#5243#5244#0" expanded="true" />
-            <element signature="e#5293#5294#0" expanded="true" />
-            <element signature="e#5340#5341#0" expanded="true" />
-            <element signature="e#5533#5534#0" expanded="true" />
-            <element signature="e#5579#5580#0" expanded="true" />
-            <element signature="e#5782#5783#0" expanded="true" />
-            <element signature="e#5824#5825#0" expanded="true" />
-            <element signature="e#5884#5885#0" expanded="true" />
-            <element signature="e#5936#5937#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/resources/processes/1_model.bpmn20.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/engine/impl/persistence/deploy/DefaultDeploymentCache.java" />
     <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/resources/processes/travel-booking-process.bpmn20.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -614,13 +525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
           <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/resources/application-dev.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
@@ -635,17 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="894">
           <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#444#474#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ActivitiServiceApplicationTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-115">
-          <caret line="60" column="70" lean-forward="true" selection-start-line="60" selection-start-column="70" selection-end-line="60" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -659,16 +552,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/ActivitiServiceApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/util/CommonUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -676,23 +559,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/impl/ActivitiServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/resources/application-dev.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/activiti/activiti-engine/5.22.0/activiti-engine-5.22.0-sources.jar!/org/activiti/engine/impl/cfg/ProcessEngineConfigurationImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="2483" column="40" selection-start-line="2483" selection-start-column="40" selection-end-line="2483" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/resources/processes/online-shopping.bpmn20.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/test/java/org/sysu/activitiservice/ActivitiServiceApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="56" column="40" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="40" />
+          <folding>
+            <element signature="method#contextStart#0;class#ActivitiServiceApplicationTests#0" />
+            <element signature="method#testRecoverProcessDefinitionEntityTime#0;class#ActivitiServiceApplicationTests#0" />
+            <element signature="method#testTravelBooking#0;class#ActivitiServiceApplicationTests#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/ActivitiServiceApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/activiti/spring/SpringProcessEngineConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/service/impl/ActivitiServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ActivitiService/src/main/java/org/sysu/activitiservice/controller/ActivitiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="242" column="9" selection-start-line="242" selection-start-column="9" selection-end-line="242" selection-end-column="9" />
-          <folding>
-            <element signature="e#716#746#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="391">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
         </state>
       </provider>
     </entry>

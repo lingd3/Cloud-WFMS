@@ -31,7 +31,7 @@ public class ExperimentHelp {
     //批量增加流程定义数，用于验证RAM与流程定义数的关系
     @Test
     public void addProcessDefinitions() {
-        String onlineShoppingPath = "processes/1_model.bpmn20.xml";
+        String onlineShoppingPath = "processes/online-shopping.bpmn20.xml";
 
         //增加1000个流程定义
         int num = 1000;
