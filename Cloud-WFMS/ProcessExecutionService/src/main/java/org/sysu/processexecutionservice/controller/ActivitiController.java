@@ -1,6 +1,7 @@
 package org.sysu.processexecutionservice.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.util.concurrent.RateLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.sysu.processexecutionservice.service.ActivitiService;
 import org.sysu.processexecutionservice.util.CommonUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 public class ActivitiController {
@@ -98,7 +98,7 @@ public class ActivitiController {
     //完成任务
     @RequestMapping(value = "completeTask/{processDefinitionId}/{processInstanceId}/{taskId}", method = RequestMethod.POST)
     public ResponseEntity<?> completeTask(@RequestParam(required = false) Map<String, Object> variables, 
-        @PathVariable(value = "processDefinitionId", required = false) String processDefinitionId, @PathVariable(value = "processInstanceId", required = false) String processInstanceId ,@PathVariable(value = "taskId", required = false) String taskId) {
+        @PathVariable(value = "processDefinitionId", required = false) String processDefinitionId, @PathVariable(value = "processInstanceId", required = false) String processInstanceId ,@PathVariable(value = "taskId", required = false) String taskId) throws ExecutionException {
 
         HashMap<String, String> response = new HashMap<>();
 
@@ -115,7 +115,6 @@ public class ActivitiController {
         }
 
         return activitiService.complete(variables, processDefinitionId, processInstanceId, taskId);
-//        return activitiService.completeTask(variables, processInstanceId, taskId);
-//        return activitiService.completeTaskWithFutureTask(variables, processDefinitionId, processInstanceId, taskId);
+
     }
 }
