@@ -52,8 +52,7 @@ public class MyRandomRule extends AbstractLoadBalancerRule {
             this.serverRequestCountsIn5seconds.put(server, new AtomicInteger());
         }
         try {
-//            writerForBusyness = new FileWriter("D:\\lb\\random_busyness.txt");
-            writerForBusyness = new FileWriter("random_busyness.txt");
+            writerForBusyness = new FileWriter("D:\\lb\\random_busyness.txt");
         } catch (IOException e) {
 
         }

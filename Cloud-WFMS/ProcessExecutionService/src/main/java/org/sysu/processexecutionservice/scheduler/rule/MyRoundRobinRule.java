@@ -25,6 +25,7 @@ import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -72,15 +73,14 @@ public class MyRoundRobinRule extends AbstractLoadBalancerRule {
             this.serverRequestCountsIn5seconds.put(server, new AtomicInteger());
         }
         try {
-//            writerForBusyness = new FileWriter("D:\\lb\\roundrobin_busyness.txt");
-            writerForBusyness = new FileWriter("roundrobin_busyness.txt");
+            writerForBusyness = new FileWriter("D:\\lb\\roundrobin_busyness.txt");
         } catch (IOException e) {
 
         }
         MyRoundRobinRule.Task task = new MyRoundRobinRule.Task();
         MyRoundRobinRule.WriteLogTask writeLogTask = new MyRoundRobinRule.WriteLogTask();
-        scheduledThreadPoolExecutor.scheduleAtFixedRate(task, 1, 1, TimeUnit.SECONDS);
-        scheduledThreadPoolExecutor.scheduleAtFixedRate(writeLogTask, 5, 5, TimeUnit.SECONDS);
+//        scheduledThreadPoolExecutor.scheduleAtFixedRate(task, 1, 1, TimeUnit.SECONDS);
+//        scheduledThreadPoolExecutor.scheduleAtFixedRate(writeLogTask, 5, 5, TimeUnit.SECONDS);
     }
 
     private AtomicInteger nextServerCyclicCounter;
@@ -138,6 +138,7 @@ public class MyRoundRobinRule extends AbstractLoadBalancerRule {
             log.warn("No available alive servers after 10 tries from load balancer: "
                     + lb);
         }
+
         return server;
     }
 
@@ -175,20 +176,29 @@ public class MyRoundRobinRule extends AbstractLoadBalancerRule {
     public void initWithNiwsConfig(IClientConfig clientConfig) {
     }
 
+    private static AtomicInteger requestCounts = new AtomicInteger();
+
+    public static int getRequestCounts() {
+        return requestCounts.intValue();
+    }
+
     public synchronized void  updateServerHistoryBusyness() {
+        requestCounts.set(0);
         List<Server> servers = getLoadBalancer().getAllServers();
-        String log2 = "random:";
+        String log2 = "roudrobin:";
         for(Server server : servers) {
             AtomicInteger requestCount = this.serverRequestCounts.get(server);
+            requestCounts.addAndGet(requestCount.intValue());
             double curBusyness = requestCount.doubleValue() / this.engineMaxRequest;
             double busyness = this.serverBusyness.get(server).doubleValue() * historyRate
                     + curBusyness * (1 - historyRate);
             log2 += server.getHostPort() + ": " + requestCount.intValue() + " - " + busyness + "  ";
-            this.serverRequestCountsIn5seconds.get(server).addAndGet(requestCount.intValue());
+//            this.serverRequestCountsIn5seconds.get(server).addAndGet(requestCount.intValue());
             this.serverRequestCounts.get(server).set(0);
             this.serverBusyness.get(server).set(busyness);
         }
-        logger.info(log2);
+//        logger.info(log2);
+        System.out.println(requestCounts.intValue());
     }
 
     public synchronized void writeBusyness() {
@@ -220,4 +230,6 @@ public class MyRoundRobinRule extends AbstractLoadBalancerRule {
             MyRoundRobinRule.this.writeBusyness();
         }
     }
+
+
 }

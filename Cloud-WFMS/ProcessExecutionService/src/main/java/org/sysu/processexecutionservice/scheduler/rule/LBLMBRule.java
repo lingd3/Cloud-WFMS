@@ -59,7 +59,6 @@ public class LBLMBRule extends RoundRobinRule {
         }
         try {
             writerForBusyness = new FileWriter("D:\\lb\\LBLMB_busyness.txt");
-//            writerForBusyness = new FileWriter("LBLMB_busyness.txt");
         } catch (IOException e) {
 
         }

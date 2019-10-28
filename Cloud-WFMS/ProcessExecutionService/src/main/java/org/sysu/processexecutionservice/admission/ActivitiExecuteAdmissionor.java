@@ -20,7 +20,7 @@ public class ActivitiExecuteAdmissionor implements IAdmissionor {
 //    每个时间片的长度
     private int timeSlice = 1000; //单位毫秒
 //    请求最高可以延迟的时间片个数
-    private int maxsSliceNum = 4;
+    private int maxsSliceNum = 3;
 
 //    队列初始化要交由相应的admit算法来进行，因为不同的算法可能有不同的队列需要【使用反射】
     private IQueueContext[] delayQueueContexts; //用数组而不用单个的队列是为了方便统计每个时段的请求数；因为统计会很消耗时间；这就是用空间换时间的策略了
