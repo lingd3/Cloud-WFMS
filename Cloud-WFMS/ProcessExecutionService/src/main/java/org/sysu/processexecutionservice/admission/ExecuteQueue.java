@@ -41,7 +41,7 @@ public class ExecuteQueue {
                 while (true) {
                     if (!queue.isEmpty()) {
                         DelayQueueContext delayQueueContext = queue.poll();
-                        if (requestCounts.intValue() > 80) {
+                        if (requestCounts.intValue() > 45) {
                             failCounts.incrementAndGet();
                         }
                         else {

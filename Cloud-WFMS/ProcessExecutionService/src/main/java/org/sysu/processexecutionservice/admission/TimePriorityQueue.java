@@ -26,7 +26,7 @@ public class TimePriorityQueue {
             public void run() {
                 while (true) {
                     int count = ExecuteQueue.requestCounts.intValue();
-                    if ((!queue.isEmpty()) && count < 80) {
+                    if ((!queue.isEmpty()) && count < 40) {
                         DelayQueueContext delayQueueContext = queue.poll();
 //                        Long expireExecuteTime = delayQueueContext.getExpireExecuteTime();
 //                        Long remain = expireExecuteTime-System.currentTimeMillis();

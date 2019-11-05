@@ -69,6 +69,7 @@ public class ActivitiService {
 
     //不延迟
     public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
+        System.out.println("complete start");
         String url = "http://" + this.activitiExecutionService + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
         MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
         Long requestTime = System.currentTimeMillis();
@@ -79,6 +80,7 @@ public class ActivitiService {
 
     //延迟到最后时间片
 //    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
+//        System.out.println("complete start");
 //        String url = "http://" + this.activitiExecutionService + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
 //        int rtl = Integer.valueOf((String) variables.get("rtl"));
 //        variables.remove("rtl");
@@ -99,6 +101,7 @@ public class ActivitiService {
 
     // 基于截止时间延迟
 //    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
+//        System.out.println("complete start");
 //        String url = "http://" + this.activitiExecutionService + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
 //        int rtl = Integer.valueOf((String) variables.get("rtl"));
 //        variables.remove("rtl");
