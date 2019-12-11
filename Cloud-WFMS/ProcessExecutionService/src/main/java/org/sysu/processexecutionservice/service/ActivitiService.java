@@ -1,30 +1,18 @@
 package org.sysu.processexecutionservice.service;
 
-import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import org.sysu.processexecutionservice.admission.ActivitiExecuteAdmissionor;
-import org.sysu.processexecutionservice.admission.ExecuteQueue;
-import org.sysu.processexecutionservice.admission.RequestQueue;
-import org.sysu.processexecutionservice.admission.TimePriorityQueue;
 import org.sysu.processexecutionservice.admission.queuecontext.DelayQueueContext;
 import org.sysu.processexecutionservice.admission.requestcontext.ActivitiExecuteRequestContext;
 import org.sysu.processexecutionservice.scheduler.Scheduler;
 import org.sysu.processexecutionservice.util.CommonUtil;
 
-import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 @Service
 public class ActivitiService {
@@ -68,36 +56,37 @@ public class ActivitiService {
     }
 
     //不延迟
-    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
-        System.out.println("complete start");
-        String url = "http://" + this.activitiExecutionService + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
-        MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
-        Long requestTime = System.currentTimeMillis();
-        DelayQueueContext delayQueueContext = new DelayQueueContext(url, valueMap, requestTime, requestTime, restTemplate);
-        ExecuteQueue.queue.offer(delayQueueContext);
-        return ResponseEntity.ok("请求正在调度中");
-    }
-
-    //延迟到最后时间片
 //    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
-//        System.out.println("complete start");
 //        String url = "http://" + this.activitiExecutionService + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
-//        int rtl = Integer.valueOf((String) variables.get("rtl"));
-//        variables.remove("rtl");
 //        MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
 //        Long requestTime = System.currentTimeMillis();
-//        if (rtl == 1) {
-//            DelayQueueContext delayQueueContext = new DelayQueueContext(url, valueMap, requestTime+1000, requestTime, restTemplate);
-//            RequestQueue.queue_rtl.offer(delayQueueContext);
-//        } else if (rtl == 2) {
-//            DelayQueueContext delayQueueContext = new DelayQueueContext(url, valueMap, requestTime+2000, requestTime, restTemplate);
-//            RequestQueue.queue_rtl2.offer(delayQueueContext);
-//        } else if (rtl == 3) {
-//            DelayQueueContext delayQueueContext = new DelayQueueContext(url, valueMap, requestTime+3000, requestTime, restTemplate);
-//            RequestQueue.queue_rtl3.offer(delayQueueContext);
-//        }
+//        DelayQueueContext delayQueueContext = new DelayQueueContext(url, valueMap, requestTime, requestTime, restTemplate);
+//        RequestQueue.queue_rtl.offer(delayQueueContext);
 //        return ResponseEntity.ok("请求正在调度中");
+//
+////        ResponseEntity<String> result = scheduler.postForEntity(url, valueMap, String.class);
+////        return result;
 //    }
+
+    //延迟到最后时间片
+    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
+        String url = "http://" + this.activitiExecutionService + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
+        int rtl = Integer.valueOf((String) variables.get("rtl"));
+        variables.remove("rtl");
+        MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
+        Long requestTime = System.currentTimeMillis();
+        if (rtl == 1) {
+            DelayQueueContext delayQueueContext = new DelayQueueContext(url, valueMap, requestTime+1000, requestTime, restTemplate);
+            RequestQueue.queue_rtl.offer(delayQueueContext);
+        } else if (rtl == 2) {
+            DelayQueueContext delayQueueContext = new DelayQueueContext(url, valueMap, requestTime+2000, requestTime, restTemplate);
+            RequestQueue.queue_rtl2.offer(delayQueueContext);
+        } else if (rtl == 3) {
+            DelayQueueContext delayQueueContext = new DelayQueueContext(url, valueMap, requestTime+3000, requestTime, restTemplate);
+            RequestQueue.queue_rtl3.offer(delayQueueContext);
+        }
+        return ResponseEntity.ok("请求正在调度中");
+    }
 
     // 基于截止时间延迟
 //    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
