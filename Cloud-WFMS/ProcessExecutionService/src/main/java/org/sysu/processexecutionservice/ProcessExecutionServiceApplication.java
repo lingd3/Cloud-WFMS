@@ -1,8 +1,10 @@
 package org.sysu.processexecutionservice;
 
 import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RoundRobinRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -11,6 +13,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class ProcessExecutionServiceApplication {
 
     public static void main(String[] args) {
@@ -36,12 +39,9 @@ public class ProcessExecutionServiceApplication {
         return new RestTemplate();
     }
 
-//    @Bean
-//    public IRule myRule() {
-//        // 比较的三种rule
-////        return new MyRandomRule();
-////        return new LBLMBRule();
-////        return new MyRoundRobinRule();
-//    }
+    @Bean
+    public IRule myRule() {
+        return new RoundRobinRule();
+    }
 
 }
