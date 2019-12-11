@@ -38,7 +38,7 @@ public class SpringProcessEngineConfiguration extends ProcessEngineConfiguration
     private Collection<AutoDeploymentStrategy> deploymentStrategies = new ArrayList();
 
     public SpringProcessEngineConfiguration() {
-        super.setProcessDefinitionCacheLimit(100); // 设置cache大小为50，使用LRU替换
+        super.setProcessDefinitionCacheLimit(100); // 设置cache大小为100，使用LRU替换
         this.transactionsExternallyManaged = true;
         this.deploymentStrategies.add(new DefaultAutoDeploymentStrategy());
         this.deploymentStrategies.add(new SingleResourceAutoDeploymentStrategy());
