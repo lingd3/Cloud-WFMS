@@ -98,7 +98,9 @@ public class ActivitiController {
     //完成任务
     @RequestMapping(value = "completeTask/{processDefinitionId}/{processInstanceId}/{taskId}", method = RequestMethod.POST)
     public ResponseEntity<?> completeTask(@RequestParam(required = false) Map<String, Object> variables, 
-        @PathVariable(value = "processDefinitionId", required = false) String processDefinitionId, @PathVariable(value = "processInstanceId", required = false) String processInstanceId ,@PathVariable(value = "taskId", required = false) String taskId) throws ExecutionException {
+                                          @PathVariable(value = "processDefinitionId", required = false) String processDefinitionId,
+                                          @PathVariable(value = "processInstanceId", required = false) String processInstanceId ,
+                                          @PathVariable(value = "taskId", required = false) String taskId) throws ExecutionException {
 
         HashMap<String, String> response = new HashMap<>();
 
