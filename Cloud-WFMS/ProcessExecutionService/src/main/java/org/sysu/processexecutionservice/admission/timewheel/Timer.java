@@ -17,6 +17,12 @@ public class Timer {
     // 时间轮
     private TimerWheel timerWheel;
 
+    // 时间槽时间长度，单位是毫秒
+    private static final int TICK_MS = 500;
+
+    // 时间槽个数
+    private static final int WHEEL_SIZE = 60;
+
     // 对于一个Timer以及附属的时间轮，都只有一个priorityQueue
     private PriorityBlockingQueue<Bucket> priorityQueue = new PriorityBlockingQueue<>(1000,new Comparator<Bucket>() {
         @Override
@@ -50,10 +56,10 @@ public class Timer {
                 .setNameFormat("TimerWheelBoss")
                 .build());
 
-        timerWheel = new TimerWheel(200, 60, System.currentTimeMillis(), priorityQueue);
+        timerWheel = new TimerWheel(TICK_MS, WHEEL_SIZE, System.currentTimeMillis(), priorityQueue);
         bossThreadPool.scheduleAtFixedRate(() -> {
             TIMER_INSTANCE.advanceClock();
-        }, 0, 200, TimeUnit.MILLISECONDS);
+        }, 0, TICK_MS, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -75,6 +81,7 @@ public class Timer {
         if (bucket == null || bucket.getExpire() > currentTimestamp) return;
         priorityQueue.poll();
         List<TimerTask> taskList = bucket.removeTaskAndGet(-1);
+        System.out.println("执行请求量：" + taskList.size());
         // 执行具体的请求
         for (TimerTask timerTask : taskList) {
             workerThreadPool.submit(timerTask.getTask());
