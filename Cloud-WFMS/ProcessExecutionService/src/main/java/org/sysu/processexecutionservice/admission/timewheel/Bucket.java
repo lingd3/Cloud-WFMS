@@ -45,6 +45,14 @@ public class Bucket {
     }
 
     /**
+     * 查询时间槽任务数
+     * @return
+     */
+    public int getTaskNum() {
+        return taskList.size();
+    }
+
+    /**
      * 删除任务
      * @param count
      * @return

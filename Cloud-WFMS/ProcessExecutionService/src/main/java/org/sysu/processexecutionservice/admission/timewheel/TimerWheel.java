@@ -2,6 +2,7 @@ package org.sysu.processexecutionservice.admission.timewheel;
 
 import java.util.PriorityQueue;
 import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * 时间轮
@@ -21,6 +22,8 @@ public class TimerWheel {
 
     // 时间轮指针
     private long currentTimestamp;
+
+    private AtomicBoolean isInitial = new AtomicBoolean(true);
 
     // 对于一个Timer以及附属的时间轮，都只有一个priorityQueue
     private PriorityBlockingQueue<Bucket> priorityQueue;
@@ -52,6 +55,14 @@ public class TimerWheel {
             // 添加到优先队列中
             if (bucket.setExpire(delayMs + currentTimestamp - (delayMs + currentTimestamp) % tickMs)) {
                 priorityQueue.offer(bucket);
+
+                // 维护滑动时间窗口 启发式算法
+                if (isInitial.get()) {
+                    isInitial.set(false);
+                    return true;
+                }
+                int taskNum = buckets[(bucketIndex+wheelSize-1)%wheelSize].getTaskNum();
+                Timer.getInstance().getTimeWindow().addLast(taskNum);
             }
         }
         return true;
