@@ -15,11 +15,11 @@ import java.util.concurrent.*;
 public class Timer {
 
     // 时间槽时间长度，单位是毫秒
-    private static final int TICK_MS = 200;
+    private static final int TICK_MS = 500;
     // 时间槽个数
     private static final int WHEEL_SIZE = 60;
     // 滑动时间窗口大小
-    private static final int TIME_WINDOW_SIZE = 10;
+    private static final int TIME_WINDOW_SIZE = 6;
 
     // 时间轮
     private TimingWheel timingWheel;
@@ -86,18 +86,11 @@ public class Timer {
         long currentTimestamp = System.currentTimeMillis();
         timingWheel.advanceClock(currentTimestamp);
 
-        for (int i = 0; i < timeWindow.size(); i++) {
-            System.out.print(timeWindow.get(i) +" ");
-        }
-        System.out.println();
-
         Bucket bucket = priorityQueue.peek();
         if (bucket == null || bucket.getExpire() > currentTimestamp) return;
 
-
         // 执行请求
         List<TimerTask> taskList = admitting();
-        System.out.println("执行请求量：" + taskList.size());
         timeWindow.removeFirst();
 
         for (TimerTask timerTask : taskList) {
@@ -126,22 +119,17 @@ public class Timer {
         } else {
             Bucket bucket = priorityQueue.poll();
             taskList = bucket.removeTaskAndGet(-1);
-            int remain = requestAvg-timeWindow.get(0);
 
-            // 怎么移动？
-
-            int k = 1; // 记录移动的时间槽
-            while (remain > 0) {
+            int moveCount = requestAvg-timeWindow.get(0);
+            // 移动时间槽请求
+            if (moveCount > 0) {
                 Bucket tempBucket = priorityQueue.peek();
-                List<TimerTask> tempTaskList = tempBucket.removeTaskAndGet(remain);
+                List<TimerTask> tempTaskList = tempBucket.removeTaskAndGet(moveCount);
                 taskList.addAll(tempTaskList);
-                remain -= tempTaskList.size();
-                timeWindow.set(k, remain);
-                if (remain <= 0) priorityQueue.poll();
-
+                int remain = timeWindow.get(1)-tempTaskList.size();
+                timeWindow.set(1, remain);
             }
         }
-
         return taskList;
     }
 

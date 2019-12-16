@@ -64,12 +64,12 @@ public class Bucket {
             return rtnList;
         }
         List<TimerTask> rtnList = new ArrayList<>();
-        Iterator<TimerTask> iterator = taskList.iterator();
         int n = 0;
-        while (iterator.hasNext() && n < count) {
-            rtnList.add(iterator.next());
-            iterator.remove();
+        for (TimerTask timerTask : taskList) {
+            if (n >= count) break;
             n++;
+            rtnList.add(timerTask);
+            taskList.remove(timerTask);
         }
         return rtnList;
     }
