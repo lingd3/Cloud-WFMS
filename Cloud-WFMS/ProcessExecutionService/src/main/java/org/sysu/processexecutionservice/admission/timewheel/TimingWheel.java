@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author: Gordan Lin
  * @create: 2019/12/11
  **/
-public class TimerWheel {
+public class TimingWheel {
 
     // 一个时间槽的时间长度
     private long tickMs;
@@ -28,7 +28,7 @@ public class TimerWheel {
     // 对于一个Timer以及附属的时间轮，都只有一个priorityQueue
     private PriorityBlockingQueue<Bucket> priorityQueue;
 
-    public TimerWheel(long tickMs, int wheelSize, long currentTimestamp, PriorityBlockingQueue<Bucket> priorityQueue) {
+    public TimingWheel(long tickMs, int wheelSize, long currentTimestamp, PriorityBlockingQueue<Bucket> priorityQueue) {
         this.tickMs = tickMs;
         this.wheelSize = wheelSize;
         this.currentTimestamp = currentTimestamp;

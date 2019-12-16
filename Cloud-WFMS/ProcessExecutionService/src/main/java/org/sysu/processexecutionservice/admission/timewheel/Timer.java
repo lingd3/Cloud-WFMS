@@ -5,7 +5,6 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.concurrent.*;
 
 /**
@@ -23,7 +22,7 @@ public class Timer {
     private static final int TIME_WINDOW_SIZE = 10;
 
     // 时间轮
-    private TimerWheel timerWheel;
+    private TimingWheel timingWheel;
 
     // 对于一个Timer以及附属的时间轮，都只有一个priorityQueue
     private PriorityBlockingQueue<Bucket> priorityQueue = new PriorityBlockingQueue<>(WHEEL_SIZE+1, new Comparator<Bucket>() {
@@ -61,7 +60,7 @@ public class Timer {
                 .setNameFormat("TimerWheelBoss")
                 .build());
 
-        timerWheel = new TimerWheel(TICK_MS, WHEEL_SIZE, System.currentTimeMillis(), priorityQueue);
+        timingWheel = new TimingWheel(TICK_MS, WHEEL_SIZE, System.currentTimeMillis(), priorityQueue);
         bossThreadPool.scheduleAtFixedRate(() -> {
             TIMER_INSTANCE.advanceClock();
         }, 0, TICK_MS, TimeUnit.MILLISECONDS);
@@ -75,7 +74,7 @@ public class Timer {
      * 将任务添加到时间轮
      */
     public void addTask(TimerTask timerTask) {
-        if (!timerWheel.addTask(timerTask)) {
+        if (!timingWheel.addTask(timerTask)) {
             workerThreadPool.submit(timerTask.getTask());
         }
     }
@@ -85,24 +84,22 @@ public class Timer {
      */
     public synchronized void advanceClock() {
         long currentTimestamp = System.currentTimeMillis();
-        timerWheel.advanceClock(currentTimestamp);
+        timingWheel.advanceClock(currentTimestamp);
 
         for (int i = 0; i < timeWindow.size(); i++) {
             System.out.print(timeWindow.get(i) +" ");
         }
         System.out.println();
 
-        // 提前执行请求
-
-
         Bucket bucket = priorityQueue.peek();
         if (bucket == null || bucket.getExpire() > currentTimestamp) return;
-        priorityQueue.poll();
-        List<TimerTask> taskList = bucket.removeTaskAndGet(-1);
+
+
+        // 执行请求
+        List<TimerTask> taskList = admitting();
         System.out.println("执行请求量：" + taskList.size());
         timeWindow.removeFirst();
 
-        // 执行具体的请求
         for (TimerTask timerTask : taskList) {
             workerThreadPool.submit(timerTask.getTask());
         }
@@ -112,18 +109,40 @@ public class Timer {
      * admitting算法
      * @return
      */
-    private int admitting() {
-        int sum = 0, i;
+    private List<TimerTask> admitting() {
+        List<TimerTask> taskList = null;
+
+        int requestSum = 0; // 滑动窗口请求总数
+        int requestAvg = 0; // 滑动窗口请求平均数
+        int i;
         for (i = 0; i < timeWindow.size(); i++) {
             if (i >= TIME_WINDOW_SIZE) break;
-            sum += timeWindow.get(i);
+            requestSum += timeWindow.get(i);
         }
-        int avg = sum/i;
-        if (timeWindow.get(0) < avg) {
+        requestAvg = requestSum/i;
+        if (timeWindow.get(0) > requestAvg) {
+            Bucket bucket = priorityQueue.poll();
+            taskList = bucket.removeTaskAndGet(-1);
+        } else {
+            Bucket bucket = priorityQueue.poll();
+            taskList = bucket.removeTaskAndGet(-1);
+            int remain = requestAvg-timeWindow.get(0);
 
+            // 怎么移动？
+
+            int k = 1; // 记录移动的时间槽
+            while (remain > 0) {
+                Bucket tempBucket = priorityQueue.peek();
+                List<TimerTask> tempTaskList = tempBucket.removeTaskAndGet(remain);
+                taskList.addAll(tempTaskList);
+                remain -= tempTaskList.size();
+                timeWindow.set(k, remain);
+                if (remain <= 0) priorityQueue.poll();
+
+            }
         }
 
-        return 0;
+        return taskList;
     }
 
 }
