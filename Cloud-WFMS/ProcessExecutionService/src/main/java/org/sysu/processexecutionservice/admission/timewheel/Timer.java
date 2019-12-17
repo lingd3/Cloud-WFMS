@@ -92,6 +92,7 @@ public class Timer {
         // 执行请求
         List<TimerTask> taskList = admitting();
         timeWindow.removeFirst();
+//        System.out.println("执行请求数：" + taskList.size());
 
         for (TimerTask timerTask : taskList) {
             workerThreadPool.submit(timerTask.getTask());
@@ -120,15 +121,15 @@ public class Timer {
             Bucket bucket = priorityQueue.poll();
             taskList = bucket.removeTaskAndGet(-1);
 
-            int moveCount = requestAvg-timeWindow.get(0);
-            // 移动时间槽请求
-            if (moveCount > 0) {
-                Bucket tempBucket = priorityQueue.peek();
-                List<TimerTask> tempTaskList = tempBucket.removeTaskAndGet(moveCount);
-                taskList.addAll(tempTaskList);
-                int remain = timeWindow.get(1)-tempTaskList.size();
-                timeWindow.set(1, remain);
-            }
+//            int moveCount = requestAvg-timeWindow.get(0);
+//            // 移动时间槽请求
+//            if (moveCount > 0) {
+//                Bucket tempBucket = priorityQueue.peek();
+//                List<TimerTask> tempTaskList = tempBucket.removeTaskAndGet(moveCount);
+//                taskList.addAll(tempTaskList);
+//                int remain = timeWindow.get(1)-tempTaskList.size();
+//                timeWindow.set(1, remain);
+//            }
         }
         return taskList;
     }
