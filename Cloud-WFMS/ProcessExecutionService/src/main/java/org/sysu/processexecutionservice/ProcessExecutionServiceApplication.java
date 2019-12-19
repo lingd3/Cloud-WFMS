@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.sysu.processexecutionservice.scheduler.rule.LBEGSRule;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -41,7 +42,8 @@ public class ProcessExecutionServiceApplication {
 
     @Bean
     public IRule myRule() {
-        return new RoundRobinRule();
+        return new LBEGSRule();
+//        return new RoundRobinRule();
     }
 
 }
