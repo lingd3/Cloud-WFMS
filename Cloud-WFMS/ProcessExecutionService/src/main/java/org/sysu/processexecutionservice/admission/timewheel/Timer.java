@@ -82,20 +82,23 @@ public class Timer {
     /**
      *  指针推进
      */
-    public synchronized void advanceClock() {
+    public void advanceClock() {
         long currentTimestamp = System.currentTimeMillis();
         timingWheel.advanceClock(currentTimestamp);
 
         Bucket bucket = priorityQueue.peek();
         if (bucket == null || bucket.getExpire() > currentTimestamp) return;
 
-        // 执行请求
-        List<TimerTask> taskList = admitting();
-        timeWindow.removeFirst();
-//        System.out.println("执行请求数：" + taskList.size());
+        try {
+            // 执行请求
+            List<TimerTask> taskList = admitting();
+            if (!timeWindow.isEmpty()) timeWindow.removeFirst();
 
-        for (TimerTask timerTask : taskList) {
-            workerThreadPool.submit(timerTask.getTask());
+            for (TimerTask timerTask : taskList) {
+                workerThreadPool.submit(timerTask.getTask());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -109,27 +112,28 @@ public class Timer {
         int requestSum = 0; // 滑动窗口请求总数
         int requestAvg = 0; // 滑动窗口请求平均数
         int i;
-        for (i = 0; i < timeWindow.size(); i++) {
-            if (i >= TIME_WINDOW_SIZE) break;
-            requestSum += timeWindow.get(i);
+        for (i = 1; i <= timeWindow.size(); i++) {
+            if (i > TIME_WINDOW_SIZE) break;
+            requestSum += timeWindow.get(i-1);
         }
         requestAvg = requestSum/i;
-        if (timeWindow.get(0) > requestAvg) {
+
+        if (timeWindow.isEmpty() || timeWindow.get(0) > requestAvg) {
             Bucket bucket = priorityQueue.poll();
             taskList = bucket.removeTaskAndGet(-1);
         } else {
             Bucket bucket = priorityQueue.poll();
             taskList = bucket.removeTaskAndGet(-1);
 
-//            int moveCount = requestAvg-timeWindow.get(0);
-//            // 移动时间槽请求
-//            if (moveCount > 0) {
-//                Bucket tempBucket = priorityQueue.peek();
-//                List<TimerTask> tempTaskList = tempBucket.removeTaskAndGet(moveCount);
-//                taskList.addAll(tempTaskList);
-//                int remain = timeWindow.get(1)-tempTaskList.size();
-//                timeWindow.set(1, remain);
-//            }
+            int moveCount = requestAvg-timeWindow.get(0);
+            // 移动时间槽请求
+            if (moveCount > 0) {
+                Bucket tempBucket = priorityQueue.peek();
+                List<TimerTask> tempTaskList = tempBucket.removeTaskAndGet(moveCount);
+                taskList.addAll(tempTaskList);
+                int remain = timeWindow.get(1)-tempTaskList.size();
+                timeWindow.set(1, remain);
+            }
         }
         return taskList;
     }
