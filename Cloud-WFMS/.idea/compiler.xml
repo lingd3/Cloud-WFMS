@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="activiti-service" />
         <module name="activiti-service (2)" />
+        <module name="eureka-service" />
         <module name="process-execution-service" />
       </profile>
     </annotationProcessing>

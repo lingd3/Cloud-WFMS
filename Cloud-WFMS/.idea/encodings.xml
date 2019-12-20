@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$USER_HOME$/Desktop/logs/log.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/ActivitiService" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/EurekaService" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ProcessExecutionService" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../../graudate_collection/CloudWorkflow/src/ActivitiService" charset="UTF-8" />
   </component>

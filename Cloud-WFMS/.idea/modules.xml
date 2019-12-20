@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ActivitiService/activiti-service.iml" filepath="$PROJECT_DIR$/ActivitiService/activiti-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EurekaService/eureka-service.iml" filepath="$PROJECT_DIR$/EurekaService/eureka-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/ProcessExecutionService/process-execution-service.iml" filepath="$PROJECT_DIR$/ProcessExecutionService/process-execution-service.iml" />
     </modules>
   </component>

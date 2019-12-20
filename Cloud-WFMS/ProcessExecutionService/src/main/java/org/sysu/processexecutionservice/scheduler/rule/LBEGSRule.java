@@ -37,7 +37,7 @@ public class LBEGSRule extends RoundRobinRule {
     private static final double THRESHOLD = 0.6;
 
     // 引擎能处理的最大请求数
-    private static final int ENGINE_MAX_REQUEST = 60;
+    private static final int ENGINE_MAX_REQUEST = 30;
 
     // 参考历史数据的度
     private static final double HISTORY_RATE = 0.6;
@@ -99,8 +99,6 @@ public class LBEGSRule extends RoundRobinRule {
             logger.warn("no up servers available from load balancer");
             return null;
         }
-
-        System.out.println(upCount);
 
         server = chooseOneServer(reachableServers, loadBalancerStats, key);
         if (server == null) {
@@ -179,21 +177,15 @@ public class LBEGSRule extends RoundRobinRule {
                 }
             }
         }
-        //获取processDefinitionId的值
+
+        //获取请求中processDefinitionId的值
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String uri = request.getRequestURI();
-
-        String processDefinitionId = "";
-        // 处理查询请求
-        if (uri.contains("getCurrentSingleTask")) {
-            processDefinitionId = "getCurrentSingleTask";
-            return super.choose(key);
-        }
 
         int startIndex = uri.indexOf('/', 1)+1;
         int endIndex = uri.indexOf('/', startIndex);
         if (endIndex == -1) endIndex = uri.length();
-        processDefinitionId = uri.substring(startIndex, endIndex);
+        String processDefinitionId = uri.substring(startIndex, endIndex);
 
         Server server = chooseServer(getLoadBalancer(), processDefinitionId);
         serverRequestCounts.get(server).incrementAndGet();

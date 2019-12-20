@@ -40,10 +40,4 @@ public class ProcessExecutionServiceApplication {
         return new RestTemplate();
     }
 
-    @Bean
-    public IRule myRule() {
-        return new LBEGSRule();
-//        return new RoundRobinRule();
-    }
-
 }
