@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * SLA限制要求
  * @author: Gordan Lin
  * @create: 2019/12/21
  **/
