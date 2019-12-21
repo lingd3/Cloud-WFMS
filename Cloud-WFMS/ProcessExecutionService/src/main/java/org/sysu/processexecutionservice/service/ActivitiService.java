@@ -1,5 +1,6 @@
 package org.sysu.processexecutionservice.service;
 
+import com.google.common.util.concurrent.RateLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.sysu.processexecutionservice.admission.limiter.SLALimit;
+import org.sysu.processexecutionservice.admission.timewheel.ActivitiTask;
+import org.sysu.processexecutionservice.admission.timewheel.Timer;
+import org.sysu.processexecutionservice.admission.timewheel.TimerTask;
 import org.sysu.processexecutionservice.util.CommonUtil;
 
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class ActivitiService {
@@ -58,7 +64,7 @@ public class ActivitiService {
 //    }
 
     //不延迟
-    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
+    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) throws ExecutionException {
         String url = "http://" + ACTIVITI_SERVICE + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
         MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
         ResponseEntity<String> result = restTemplate.postForEntity(url, valueMap, String.class);
@@ -66,15 +72,21 @@ public class ActivitiService {
     }
 
     //延迟请求
-//    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) {
+//    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) throws ExecutionException {
+//        int rar = Integer.valueOf((String) variables.get("rar"));
+//        RateLimiter limiter = SLALimit.requestRateLimiterCaches.get("zuhu-"+rar);
+//        if (!limiter.tryAcquire()) {
+//            logger.error("请求由于限流被拒绝");
+//            return ResponseEntity.ok("请求由于限流被拒绝");
+//        }
+//
 //        String url = "http://" + ACTIVITI_SERVICE + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
 //        // 延时级别rtl
 //        int rtl = Integer.valueOf((String) variables.get("rtl"));
-//        variables.remove("rtl");
 //        MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
 //
 //        ActivitiTask activitiTask = new ActivitiTask(url, valueMap, restTemplate);
-//        TimerTask timerTask = new TimerTask(rtl*1000, activitiTask);
+//        TimerTask timerTask = new TimerTask(rtl*SLALimit.RESPONSE_TIME_PER_LEVEL, activitiTask);
 //        Timer.getInstance().addTask(timerTask);
 //        return ResponseEntity.ok("请求正在调度中");
 //    }
