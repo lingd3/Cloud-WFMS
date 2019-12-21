@@ -20,6 +20,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import sun.awt.Symbol;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -48,6 +49,25 @@ public class ActivitiServiceApplicationTests {
         for (int i = 0; i < 100; i++) {
             repositoryService.createDeployment().addClasspathResource(r1).deploy();
         }
+    }
+
+    @Test
+    public void startProcessInstanceById() {
+        long start = System.currentTimeMillis();
+        ProcessInstance processInstance = runtimeService.startProcessInstanceById("online-shopping:100:12900");
+        long end = System.currentTimeMillis();
+//        System.out.println(processInstance.getId());
+        System.out.println("第一次执行时间：" + (end-start) + "ms");
+
+        start = System.currentTimeMillis();
+        processInstance = runtimeService.startProcessInstanceById("online-shopping:101:50079");
+        end = System.currentTimeMillis();
+        System.out.println("第一次执行时间：" + (end-start) + "ms");
+
+        start = System.currentTimeMillis();
+        processInstance = runtimeService.startProcessInstanceById("online-shopping:100:12900");
+        end = System.currentTimeMillis();
+        System.out.println("第二次执行时间：" + (end-start) + "ms");
     }
 
     @Test
