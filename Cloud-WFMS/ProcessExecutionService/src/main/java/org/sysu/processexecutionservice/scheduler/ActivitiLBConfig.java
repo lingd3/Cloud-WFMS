@@ -18,6 +18,7 @@ public class ActivitiLBConfig {
 
     @Bean
     public IRule ribbonRule() {
-        return new LBEGSRule();
+//        return new LBEGSRule();
+        return new RoundRobinRule();
     }
 }
