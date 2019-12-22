@@ -23,6 +23,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.sysu.activitiservice.cache.MyProcessDefinitionCache;
 
 /**
  * 引擎配置类
@@ -38,7 +39,8 @@ public class SpringProcessEngineConfiguration extends ProcessEngineConfiguration
     private Collection<AutoDeploymentStrategy> deploymentStrategies = new ArrayList();
 
     public SpringProcessEngineConfiguration() {
-        super.setProcessDefinitionCacheLimit(100); // 设置cache大小为100，使用LRU替换
+//        super.setProcessDefinitionCacheLimit(100); // 设置cache大小为100，使用LRU替换
+        super.setProcessDefinitionCache(new MyProcessDefinitionCache());
         this.transactionsExternallyManaged = true;
         this.deploymentStrategies.add(new DefaultAutoDeploymentStrategy());
         this.deploymentStrategies.add(new SingleResourceAutoDeploymentStrategy());

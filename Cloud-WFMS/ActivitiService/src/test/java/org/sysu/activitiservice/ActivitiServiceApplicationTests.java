@@ -59,15 +59,12 @@ public class ActivitiServiceApplicationTests {
 //        System.out.println(processInstance.getId());
         System.out.println("第一次执行时间：" + (end-start) + "ms");
 
-        start = System.currentTimeMillis();
-        processInstance = runtimeService.startProcessInstanceById("online-shopping:101:50079");
-        end = System.currentTimeMillis();
-        System.out.println("第一次执行时间：" + (end-start) + "ms");
-
-        start = System.currentTimeMillis();
-        processInstance = runtimeService.startProcessInstanceById("online-shopping:100:12900");
-        end = System.currentTimeMillis();
-        System.out.println("第二次执行时间：" + (end-start) + "ms");
+        for (int i = 0; i < 10; i++) {
+            start = System.currentTimeMillis();
+            processInstance = runtimeService.startProcessInstanceById("online-shopping:101:50079");
+            end = System.currentTimeMillis();
+            System.out.println((end-start) + "ms");
+        }
     }
 
     @Test
