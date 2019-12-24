@@ -45,8 +45,9 @@ public class ActivitiServiceApplicationTests {
 
     @Test
     public void initDeploy() {
-        String r1 = "processes/online-shopping.bpmn20.xml";
-        for (int i = 0; i < 100; i++) {
+//        String r1 = "processes/online-shopping.bpmn20.xml";
+        String r1 = "processes/testing-process.bpmn20.xml";
+        for (int i = 0; i < 1; i++) {
             repositoryService.createDeployment().addClasspathResource(r1).deploy();
         }
     }
@@ -241,6 +242,27 @@ public class ActivitiServiceApplicationTests {
     }
 
     @Test
+    public void test() {
+        Map<String, Object> variables = new HashMap<String, Object>();
+        ProcessInstance pi = runtimeService.startProcessInstanceById("testing-process:1:4", variables);
+        Task task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        taskService.complete(task.getId());
+        task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        taskService.complete(task.getId());
+        task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        taskService.complete(task.getId());
+        task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        taskService.complete(task.getId());
+        task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        taskService.complete(task.getId());
+        task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        taskService.complete(task.getId());
+        task = taskService.createTaskQuery().processInstanceId(pi.getId()).singleResult();
+        taskService.complete(task.getId());
+        System.out.println(historyService.createHistoricProcessInstanceQuery().finished().count());
+    }
+
+    @Test
     public void testTravelBooking() {
         //验证是否有加载
         long count = repositoryService.createProcessDefinitionQuery().count();
@@ -257,7 +279,7 @@ public class ActivitiServiceApplicationTests {
         Map<String, Object> variables = new HashMap<String, Object>();
         Map<String, Object> subVariables = new HashMap<String, Object>();
 
-        ProcessInstance pi = runtimeService.startProcessInstanceByKey("travel-booking", variables);
+        ProcessInstance pi = runtimeService.startProcessInstanceById("travel-booking:1:4", variables);
         System.out.println(pi);
 
         //完成第一步：register

@@ -64,31 +64,31 @@ public class ActivitiService {
 //    }
 
     //不延迟
-    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) throws ExecutionException {
-        String url = "http://" + ACTIVITI_SERVICE + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
-        MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
-        ResponseEntity<String> result = restTemplate.postForEntity(url, valueMap, String.class);
-        return result;
-    }
+//    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) throws ExecutionException {
+//        String url = "http://" + ACTIVITI_SERVICE + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
+//        MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
+//        ResponseEntity<String> result = restTemplate.postForEntity(url, valueMap, String.class);
+//        return result;
+//    }
 
     //延迟请求
-//    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) throws ExecutionException {
+    public ResponseEntity<?> complete(Map<String, Object> variables, String processDefinitionId, String processInstanceId, String taskId) throws ExecutionException {
 //        int rar = Integer.valueOf((String) variables.get("rar"));
 //        RateLimiter limiter = SLALimit.requestRateLimiterCaches.get("zuhu-"+rar);
 //        if (!limiter.tryAcquire()) {
 //            logger.error("请求由于限流被拒绝");
 //            return ResponseEntity.ok("请求由于限流被拒绝");
 //        }
-//
-//        String url = "http://" + ACTIVITI_SERVICE + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
-//        // 延时级别rtl
-//        int rtl = Integer.valueOf((String) variables.get("rtl"));
-//        MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
-//
-//        ActivitiTask activitiTask = new ActivitiTask(url, valueMap, restTemplate);
-//        TimerTask timerTask = new TimerTask(rtl*SLALimit.RESPONSE_TIME_PER_LEVEL, activitiTask);
-//        Timer.getInstance().addTask(timerTask);
-//        return ResponseEntity.ok("请求正在调度中");
-//    }
+
+        String url = "http://" + ACTIVITI_SERVICE + "/completeTask/" + processDefinitionId + "/" + processInstanceId + "/" + taskId;
+        // 延时级别rtl
+        int rtl = Integer.valueOf((String) variables.get("rtl"));
+        MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
+
+        ActivitiTask activitiTask = new ActivitiTask(url, valueMap, restTemplate);
+        TimerTask timerTask = new TimerTask(rtl*SLALimit.RESPONSE_TIME_PER_LEVEL, activitiTask);
+        Timer.getInstance().addTask(timerTask);
+        return ResponseEntity.ok("请求正在调度中");
+    }
 
 }
