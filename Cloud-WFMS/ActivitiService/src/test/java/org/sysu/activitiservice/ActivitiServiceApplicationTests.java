@@ -47,7 +47,7 @@ public class ActivitiServiceApplicationTests {
     public void initDeploy() {
 //        String r1 = "processes/online-shopping.bpmn20.xml";
         String r1 = "processes/testing-process.bpmn20.xml";
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 100; i++) {
             repositoryService.createDeployment().addClasspathResource(r1).deploy();
         }
     }

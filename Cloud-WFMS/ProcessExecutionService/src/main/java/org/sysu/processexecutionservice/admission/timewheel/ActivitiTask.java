@@ -30,10 +30,7 @@ public class ActivitiTask implements Runnable {
     @Override
     public void run() {
         try {
-            long start = System.currentTimeMillis();
             ResponseEntity<String> result = restTemplate.postForEntity(url, variables, String.class);
-            long end = System.currentTimeMillis();
-            System.out.println((end-start) + " ms");
         } catch (Exception e) {
             e.printStackTrace();
         }
