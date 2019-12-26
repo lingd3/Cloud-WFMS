@@ -39,6 +39,8 @@ public class Timer {
 
     private ScheduledExecutorService bossThreadPool;
 
+    private LoadPrediction loadPrediction;
+
     private static Timer TIMER_INSTANCE;
 
     public static Timer getInstance() {
@@ -53,6 +55,8 @@ public class Timer {
     }
 
     private Timer() {
+        loadPrediction = new LoadPrediction();
+
         workerThreadPool = Executors.newFixedThreadPool(100, new ThreadFactoryBuilder().setPriority(10)
                 .setNameFormat("TimerWheelWorker")
                 .build());
@@ -108,6 +112,8 @@ public class Timer {
      */
     private List<TimerTask> admitting() {
         List<TimerTask> taskList = null;
+
+//        System.out.println("未来负载：" + loadPrediction.getFutureLoad());
 
         int requestSum = 0; // 滑动窗口请求总数
         int requestAvg = 0; // 滑动窗口请求平均数

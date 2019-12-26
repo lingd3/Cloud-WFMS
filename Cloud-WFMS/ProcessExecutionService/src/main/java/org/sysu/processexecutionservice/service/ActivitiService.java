@@ -1,6 +1,5 @@
 package org.sysu.processexecutionservice.service;
 
-import com.google.common.util.concurrent.RateLimiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.sysu.processexecutionservice.admission.limiter.SLALimit;
+import org.sysu.processexecutionservice.admission.timewheel.LoadPrediction;
 import org.sysu.processexecutionservice.admission.timewheel.ActivitiTask;
 import org.sysu.processexecutionservice.admission.timewheel.Timer;
 import org.sysu.processexecutionservice.admission.timewheel.TimerTask;
 import org.sysu.processexecutionservice.util.CommonUtil;
+import org.sysu.processexecutionservice.util.JedisUtil;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -26,7 +27,7 @@ public class ActivitiService {
     RestTemplate restTemplate;
 
     private static final String ACTIVITI_SERVICE = "activiti-service";
-    private static final String QUERY_SERVICE = "query-service";
+    private static final String QUERY_SERVICE = "activiti-service";
 
     public ResponseEntity<?> getCurrentSingleTask(String processInstanceId) {
         String url = "http://" + QUERY_SERVICE + "/getCurrentSingleTask/" + processInstanceId;
@@ -88,6 +89,9 @@ public class ActivitiService {
         ActivitiTask activitiTask = new ActivitiTask(url, valueMap, restTemplate);
         TimerTask timerTask = new TimerTask(rtl*SLALimit.RESPONSE_TIME_PER_LEVEL, activitiTask);
         Timer.getInstance().addTask(timerTask);
+
+        // 插入预测数据
+        JedisUtil.zadd(LoadPrediction.REDIS_KEY, System.currentTimeMillis()+8000, processDefinitionId+"-"+taskId);
         return ResponseEntity.ok("请求正在调度中");
     }
 
