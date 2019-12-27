@@ -19,7 +19,7 @@ public class Timer {
     // 时间槽个数
     private static final int WHEEL_SIZE = 60;
     // 滑动时间窗口大小
-    private static final int TIME_WINDOW_SIZE = 6;
+    private static final int TIME_WINDOW_SIZE = 10;
 
     // 时间轮
     private TimingWheel timingWheel;
@@ -113,8 +113,6 @@ public class Timer {
     private List<TimerTask> admitting() {
         List<TimerTask> taskList = null;
 
-//        System.out.println("未来负载：" + loadPrediction.getFutureLoad());
-
         int requestSum = 0; // 滑动窗口请求总数
         int requestAvg = 0; // 滑动窗口请求平均数
         int i;
@@ -123,6 +121,11 @@ public class Timer {
             requestSum += timeWindow.get(i-1);
         }
         requestAvg = requestSum/i;
+
+        // 未来负载
+        int requestFuture = (int)(loadPrediction.getFutureLoad()/(LoadPrediction.PREDICTION_DURATION/TICK_MS));
+
+
 
         if (timeWindow.isEmpty() || timeWindow.get(0) > requestAvg) {
             Bucket bucket = priorityQueue.poll();

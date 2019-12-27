@@ -45,9 +45,9 @@ public class ActivitiServiceApplicationTests {
 
     @Test
     public void initDeploy() {
-//        String r1 = "processes/online-shopping.bpmn20.xml";
-        String r1 = "processes/testing-process.bpmn20.xml";
-        for (int i = 0; i < 100; i++) {
+        String r1 = "processes/travel-booking-process.bpmn20.xml";
+//        String r1 = "processes/testing-process.bpmn20.xml";
+        for (int i = 0; i < 1; i++) {
             repositoryService.createDeployment().addClasspathResource(r1).deploy();
         }
     }
@@ -60,12 +60,12 @@ public class ActivitiServiceApplicationTests {
 //        System.out.println(processInstance.getId());
         System.out.println("第一次执行时间：" + (end-start) + "ms");
 
-        for (int i = 0; i < 10; i++) {
-            start = System.currentTimeMillis();
-            processInstance = runtimeService.startProcessInstanceById("online-shopping:101:50079");
-            end = System.currentTimeMillis();
-            System.out.println((end-start) + "ms");
-        }
+//        for (int i = 0; i < 10; i++) {
+//            start = System.currentTimeMillis();
+//            processInstance = runtimeService.startProcessInstanceById("online-shopping:101:50079");
+//            end = System.currentTimeMillis();
+//            System.out.println((end-start) + "ms");
+//        }
     }
 
     @Test

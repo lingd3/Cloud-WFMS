@@ -19,8 +19,8 @@ public class LoadPrediction {
     private final static Logger logger = LoggerFactory.getLogger(LoadPrediction.class);
 
     public static final String REDIS_KEY = "task";
-    private static final long UPDATE_DURATION = 3000;
-    private static final long PREDICTION_DURATION = 5000;
+    public static final long UPDATE_DURATION = 3000;
+    public static final long PREDICTION_DURATION = 5000;
 
     public static ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
 

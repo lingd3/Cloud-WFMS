@@ -26,6 +26,9 @@ public class ActivitiService {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    PredictionService predictionService;
+
     private static final String ACTIVITI_SERVICE = "activiti-service";
     private static final String QUERY_SERVICE = "activiti-service";
 
@@ -91,7 +94,7 @@ public class ActivitiService {
         Timer.getInstance().addTask(timerTask);
 
         // 插入预测数据
-        JedisUtil.zadd(LoadPrediction.REDIS_KEY, System.currentTimeMillis()+8000, processDefinitionId+"-"+taskId);
+        predictionService.addData(processDefinitionId, taskId);
         return ResponseEntity.ok("请求正在调度中");
     }
 
