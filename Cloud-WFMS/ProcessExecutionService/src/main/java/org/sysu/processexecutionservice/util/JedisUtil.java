@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Jedis工具类
@@ -59,13 +60,13 @@ public class JedisUtil {
         return 0;
     }
 
-    public static List<Tuple> zscan(String key, int cursor) {
+    public static Set<Tuple> zrange(String key, int start, int end) {
         Jedis jedis = null;
         try {
             jedis = JedisPoolUtil.getJedisPoolInstance().getResource();
-            return jedis.zscan(key, 0).getResult();
+            return jedis.zrangeWithScores(key, start, end);
         } catch (Exception e) {
-            logger.error("zscan发生异常" + e.getMessage());
+            logger.error("发生异常" + e.getMessage());
         } finally {
             if (jedis != null) {
                 jedis.close();

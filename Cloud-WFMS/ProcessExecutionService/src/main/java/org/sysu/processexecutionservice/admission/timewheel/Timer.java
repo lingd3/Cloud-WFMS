@@ -1,6 +1,8 @@
 package org.sysu.processexecutionservice.admission.timewheel;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -14,8 +16,10 @@ import java.util.concurrent.*;
  **/
 public class Timer {
 
+    private static Logger logger = LoggerFactory.getLogger(Timer.class);
+
     // 时间槽时间长度，单位是毫秒
-    private static final int TICK_MS = 500;
+    private static final int TICK_MS = 1000;
     // 时间槽个数
     private static final int WHEEL_SIZE = 60;
     // 滑动时间窗口大小
@@ -91,11 +95,15 @@ public class Timer {
         timingWheel.advanceClock(currentTimestamp);
 
         Bucket bucket = priorityQueue.peek();
-        if (bucket == null || bucket.getExpire() > currentTimestamp) return;
+        if (bucket == null || bucket.getExpire() > currentTimestamp) {
+            logger.info("当前负载：0");
+            return;
+        }
 
         try {
             // 执行请求
             List<TimerTask> taskList = admitting();
+            logger.info("当前负载：{}", taskList.size());
             if (!timeWindow.isEmpty()) timeWindow.removeFirst();
 
             for (TimerTask timerTask : taskList) {
@@ -121,11 +129,6 @@ public class Timer {
             requestSum += timeWindow.get(i-1);
         }
         requestAvg = requestSum/i;
-
-        // 未来负载
-        int requestFuture = (int)(loadPrediction.getFutureLoad()/(LoadPrediction.PREDICTION_DURATION/TICK_MS));
-
-
 
         if (timeWindow.isEmpty() || timeWindow.get(0) > requestAvg) {
             Bucket bucket = priorityQueue.poll();

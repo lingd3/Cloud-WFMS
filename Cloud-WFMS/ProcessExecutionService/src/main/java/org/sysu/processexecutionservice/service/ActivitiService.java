@@ -2,6 +2,7 @@ package org.sysu.processexecutionservice.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,11 @@ import org.sysu.processexecutionservice.util.CommonUtil;
 import org.sysu.processexecutionservice.util.JedisUtil;
 
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 @Service
-public class ActivitiService {
+public class ActivitiService implements InitializingBean {
 
     private static Logger logger = LoggerFactory.getLogger(ActivitiService.class);
 
@@ -28,6 +30,8 @@ public class ActivitiService {
 
     @Autowired
     PredictionService predictionService;
+
+    private static Random random = new Random();
 
     private static final String ACTIVITI_SERVICE = "activiti-service";
     private static final String QUERY_SERVICE = "activiti-service";
@@ -55,6 +59,10 @@ public class ActivitiService {
         String url = "http://" + ACTIVITI_SERVICE+ "/startProcessInstanceById/" + processDefinitionId;
         MultiValueMap<String, Object> valueMap = CommonUtil.map2MultiValueMap(variables);
         ResponseEntity<String> result = restTemplate.postForEntity(url, valueMap, String.class);
+
+        // 插入预测数据
+        predictionService.addData(processDefinitionId, System.currentTimeMillis()+random.nextInt(10000));
+
         return result;
     }
 
@@ -93,9 +101,11 @@ public class ActivitiService {
         TimerTask timerTask = new TimerTask(rtl*SLALimit.RESPONSE_TIME_PER_LEVEL, activitiTask);
         Timer.getInstance().addTask(timerTask);
 
-        // 插入预测数据
-        predictionService.addData(processDefinitionId, taskId);
         return ResponseEntity.ok("请求正在调度中");
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Timer.getInstance();
+    }
 }

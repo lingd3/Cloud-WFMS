@@ -38,10 +38,26 @@ public class PredictionService {
     @Autowired
     RuntimeService runtimeService;
 
+    public void addData(String processDefinitionId, long timestamp) {
+        ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity)(((RepositoryServiceImpl)repositoryService).getDeployedProcessDefinition(processDefinitionId));
+        List<ActivityImpl> activityList = processDefinitionEntity.getActivities();
+        int i = 0;
+        for (ActivityImpl activityImpl : activityList){
+            String id = activityImpl.getId();
+            List<PvmTransition> outTransitions = activityImpl.getOutgoingTransitions();//获取从某个节点出来的所有线路
+            i++;
+            for (PvmTransition tr : outTransitions){
+                PvmActivity ac = tr.getDestination(); //获取线路的终点节点
+                // 请求到达时间需要再解决，目前暂定都为10s
+                if (ac.getProperty("name") != null) {
+                    JedisUtil.zadd(LoadPrediction.REDIS_KEY, System.currentTimeMillis()+i*10000, processDefinitionId+"-"+ac.getProperty("name")+"-"+timestamp);
+                }
+            }
+        }
+    }
+
+
     public void addData(String processDefinitionId, String taskId) {
-
-        //        JedisUtil.zadd(LoadPrediction.REDIS_KEY, System.currentTimeMillis()+8000, processDefinitionId+"-"+taskId);
-
         ProcessDefinitionEntity processDefinitionEntity = (ProcessDefinitionEntity)(((RepositoryServiceImpl)repositoryService).getDeployedProcessDefinition(processDefinitionId));
         List<ActivityImpl> activityList = processDefinitionEntity.getActivities();
         Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
@@ -54,10 +70,9 @@ public class PredictionService {
                 List<PvmTransition> outTransitions = activityImpl.getOutgoingTransitions();//获取从某个节点出来的所有线路
                 for (PvmTransition tr : outTransitions){
                     PvmActivity ac = tr.getDestination(); //获取线路的终点节点
-
-                    // 请求到达时间需要再解决，目前暂定为8000ms
+                    // 请求到达时间需要再解决，目前暂定都为10s
                     if (ac.getProperty("name") != null) {
-                        JedisUtil.zadd(LoadPrediction.REDIS_KEY, System.currentTimeMillis()+8000, processDefinitionId+"-"+taskId);
+                        JedisUtil.zadd(LoadPrediction.REDIS_KEY, System.currentTimeMillis()+10000, processDefinitionId+"-"+taskId);
                     }
                 }
                 break;
