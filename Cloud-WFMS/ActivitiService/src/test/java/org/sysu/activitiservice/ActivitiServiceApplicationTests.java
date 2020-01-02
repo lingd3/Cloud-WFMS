@@ -45,8 +45,8 @@ public class ActivitiServiceApplicationTests {
 
     @Test
     public void initDeploy() {
-        String r1 = "processes/travel-booking-process.bpmn20.xml";
-//        String r1 = "processes/testing-process.bpmn20.xml";
+//        String r1 = "processes/travel-booking-process.bpmn20.xml";
+        String r1 = "processes/testing-process.bpmn20.xml";
         for (int i = 0; i < 1; i++) {
             repositoryService.createDeployment().addClasspathResource(r1).deploy();
         }
@@ -54,18 +54,20 @@ public class ActivitiServiceApplicationTests {
 
     @Test
     public void startProcessInstanceById() {
-        long start = System.currentTimeMillis();
-        ProcessInstance processInstance = runtimeService.startProcessInstanceById("online-shopping:100:12900");
-        long end = System.currentTimeMillis();
-//        System.out.println(processInstance.getId());
-        System.out.println("第一次执行时间：" + (end-start) + "ms");
 
-//        for (int i = 0; i < 10; i++) {
-//            start = System.currentTimeMillis();
-//            processInstance = runtimeService.startProcessInstanceById("online-shopping:101:50079");
-//            end = System.currentTimeMillis();
-//            System.out.println((end-start) + "ms");
-//        }
+        ProcessInstance processInstance5 = runtimeService.startProcessInstanceById("testing-process:100:5396");
+
+        for (int i = 0; i < 10; i++) {
+            long start = System.currentTimeMillis();
+            ProcessInstance processInstance = runtimeService.startProcessInstanceById("testing-process:1:4");
+            long end = System.currentTimeMillis();
+
+            long start2 = System.currentTimeMillis();
+            ProcessInstance processInstance2 = runtimeService.startProcessInstanceById("testing-process:100:5396");
+            long end2 = System.currentTimeMillis();
+
+            System.out.println((end-start) + "ms, " + (end2-start2) + "ms");
+        }
     }
 
     @Test
