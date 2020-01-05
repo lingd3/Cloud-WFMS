@@ -9,6 +9,7 @@ import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.impl.pvm.process.TransitionImpl;
+import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.Execution;
@@ -45,34 +46,47 @@ public class ActivitiServiceApplicationTests {
 
     @Test
     public void initDeploy() {
-//        String r1 = "processes/travel-booking-process.bpmn20.xml";
+//        String r1 = "processes/1_model.bpmn20.xml";
         String r1 = "processes/testing-process.bpmn20.xml";
         for (int i = 0; i < 1; i++) {
-            repositoryService.createDeployment().addClasspathResource(r1).deploy();
+            Deployment d = repositoryService.createDeployment().addClasspathResource(r1).deploy();
+            System.out.println(d.getId());
         }
     }
 
     @Test
     public void startProcessInstanceById() {
 
-        ProcessInstance processInstance5 = runtimeService.startProcessInstanceById("testing-process:100:5396");
+//        ProcessInstance processInstance5 = runtimeService.startProcessInstanceById("testing-process:100:5396");
+//
+//        for (int i = 0; i < 10; i++) {
+//            long start = System.currentTimeMillis();
+//            ProcessInstance processInstance = runtimeService.startProcessInstanceById("testing-process:1:4");
+//            long end = System.currentTimeMillis();
+//
+//            long start2 = System.currentTimeMillis();
+//            ProcessInstance processInstance2 = runtimeService.startProcessInstanceById("testing-process:100:5396");
+//            long end2 = System.currentTimeMillis();
+//
+//            System.out.println((end-start) + "ms, " + (end2-start2) + "ms");
+//        }
 
         for (int i = 0; i < 10; i++) {
             long start = System.currentTimeMillis();
-            ProcessInstance processInstance = runtimeService.startProcessInstanceById("testing-process:1:4");
+            ProcessInstance processInstance = runtimeService.startProcessInstanceById("test-travel:100:400");
             long end = System.currentTimeMillis();
 
             long start2 = System.currentTimeMillis();
-            ProcessInstance processInstance2 = runtimeService.startProcessInstanceById("testing-process:100:5396");
+            ProcessInstance processInstance2 = runtimeService.startProcessInstanceById("testing-process:1:17504");
             long end2 = System.currentTimeMillis();
 
-            System.out.println((end-start) + "ms, " + (end2-start2) + "ms");
+//            System.out.println((end-start) + "ms, " + (end2-start2) + "ms");
         }
     }
 
     @Test
     public void getProcessDefinitionId() {
-        List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().processDefinitionKey("online-shopping").list();
+        List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().processDefinitionKey("test-travel").list();
         for (ProcessDefinition p : list) {
             System.out.println(p.getId());
         }

@@ -165,11 +165,7 @@ import org.activiti.engine.impl.persistence.GenericManagerFactory;
 import org.activiti.engine.impl.persistence.GroupEntityManagerFactory;
 import org.activiti.engine.impl.persistence.MembershipEntityManagerFactory;
 import org.activiti.engine.impl.persistence.UserEntityManagerFactory;
-import org.activiti.engine.impl.persistence.deploy.DefaultDeploymentCache;
-import org.activiti.engine.impl.persistence.deploy.Deployer;
-import org.activiti.engine.impl.persistence.deploy.DeploymentCache;
-import org.activiti.engine.impl.persistence.deploy.DeploymentManager;
-import org.activiti.engine.impl.persistence.deploy.ProcessDefinitionInfoCache;
+import org.activiti.engine.impl.persistence.deploy.*;
 import org.activiti.engine.impl.persistence.entity.AttachmentEntityManager;
 import org.activiti.engine.impl.persistence.entity.ByteArrayEntityManager;
 import org.activiti.engine.impl.persistence.entity.CommentEntityManager;
@@ -313,9 +309,9 @@ public abstract class ProcessEngineConfigurationImpl extends ProcessEngineConfig
     protected List<Deployer> deployers;
     protected DeploymentManager deploymentManager;
 
-    protected int processDefinitionCacheLimit = 10; // By default, no limit
+    protected int processDefinitionCacheLimit = 20; // By default, no limit
     protected DeploymentCache<ProcessDefinitionEntity> processDefinitionCache;
-    protected int bpmnModelCacheLimit = 10; // By default, no limit
+    protected int bpmnModelCacheLimit = -1; // By default, no limit
     protected DeploymentCache<BpmnModel> bpmnModelCache;
     protected int processDefinitionInfoCacheLimit = -1; // By default, no limit
     protected ProcessDefinitionInfoCache processDefinitionInfoCache;

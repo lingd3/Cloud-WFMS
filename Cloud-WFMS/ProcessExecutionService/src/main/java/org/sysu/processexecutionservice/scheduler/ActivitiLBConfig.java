@@ -1,6 +1,7 @@
 package org.sysu.processexecutionservice.scheduler;
 
 import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RandomRule;
 import com.netflix.loadbalancer.RoundRobinRule;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ public class ActivitiLBConfig {
     @Bean
     public IRule ribbonRule() {
 //        return new LBEGSRule();
+//        return new RandomRule();
         return new RoundRobinRule();
     }
 }
